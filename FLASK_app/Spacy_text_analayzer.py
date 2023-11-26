@@ -175,9 +175,9 @@ def get_matchers(list_skills, missing_skills, spacy_nlp):
 
     # 2. Add patterns
     for k, skill in enumerate(list_skills):
-        print(k, skill)
+        # print(k, skill)
         pattern = get_pattern(skill)
-        print(k, pattern)
+        # print(k, pattern)
 
         if skill in list_missing_skills:
             matcher_NOK.add(f"rule_{k}", [pattern])  # you do not have this skill
