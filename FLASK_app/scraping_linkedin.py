@@ -67,10 +67,6 @@ def find_Job_Ids(soup):
 
     return Job_Ids_on_the_page
 
-
-description
-
-
 def scraping_Job_Ids(
     keywords,
     location,
