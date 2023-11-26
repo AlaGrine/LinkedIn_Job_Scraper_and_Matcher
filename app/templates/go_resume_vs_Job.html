@@ -1,0 +1,65 @@
+{% extends "resume_vs_Job.html" %}
+{% block content %}
+<hr />
+<div class="container">
+
+    {% if num_skills>-1 %}
+    <p>
+    <h3>Match score:
+        <span style="font-size:x-large;background-color: silver; ">
+            {{match_score}}%
+        </span>
+    </h3>
+
+    </p>
+
+    <p>
+        {% for k in range(nb_words) %}
+        {% if types[k] =="SKILL-missing" %}
+        <span style="font-size:medium;background-color: rgb(239,59,44);color: white;">
+            {{words[k]}}
+        </span>
+        {% endif %}
+        {% if types[k] =="SKILL" %}
+        <span style="font-size:medium;background-color:rgb(33,113,181) ;color: white;">
+            {{words[k]}}
+        </span>
+        {% endif %}
+        {% if types[k] =="other" %}
+        <span>
+            {{words[k]}}
+        </span>
+        {% endif %}
+        {% endfor %}
+    </p>
+    <h3 class="title">
+        Required skills:
+    </h3>
+    <br>
+
+    <div class="text-center">
+        {% for skill in list_required_skills %}
+        {% if skill in missing_skills %}
+        <span style="font-size:large;background-color: rgb(239,59,44);color: white; 
+                padding-left: 0.25em;
+                margin-left: 1em;">
+            {{skill}}
+        </span>
+        {% else %}
+        <span style="font-size:large;background-color: rgb(33,113,181);color: white; 
+                padding-left: 0.25em;
+                margin-left: 1em;">
+            {{skill}}
+        </span>
+        {% endif %}
+        {% endfor %}
+    </div>
+    <br><br>
+
+
+    {% else %}
+    <h3 style="background-color: red;color: white;">{{message}}</h3>
+
+    {% endif %}
+</div>
+{% endblock %}

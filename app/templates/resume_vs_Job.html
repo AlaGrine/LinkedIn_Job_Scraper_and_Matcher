@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block resume_vs_Job_page %}
+<div class="jumbotron">
+
+
+  <div class="container-fluid">
+
+    <div id="middle-info" class="mt-3">
+      <h2 id="tag-line">Resume vs. Job</h2>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 form-group-lg">
+        <!-- form -->
+        <form action="/go_resume_vs_Job" method="get">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Select your resume (.pdf)</label>
+            <input type="file" class="form-control form-control-lg" name="query_resume_path" value="../resume/">
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Job descreption</label>
+            <textarea class="form-control" name="query_job_descreption" rows="6"></textarea>
+          </div>
+
+          <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-3">Analyze</button>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+
+    <!-- Show block message -->
+    {% block message %}
+    {% endblock %}
+  </div>
+</div>
+
+<div class="container">
+
+
+  {% block content %}
+  <hr />
+  {% endblock %}
+
+
+</div>
+
+</div>
+{% endblock %}

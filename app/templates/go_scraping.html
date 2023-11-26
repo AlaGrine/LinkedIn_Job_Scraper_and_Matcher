@@ -1,0 +1,20 @@
+{% extends "scraping.html" %}
+{% block title %}Results{% endblock %}
+{% block message %}
+<hr />
+
+{% if num_jobs>0 %}
+<h1 class="text-center">Linkedin Jobs:
+    <span style="font-size:xx-large;background-color: gold; ">
+        {{num_jobs}}
+    </span>
+</h1>
+{% else %}
+<h3 style="background-color: red;color: white;">{{message}}</h3>
+
+{% endif %}
+{% endblock %}
+
+{% block content %}
+
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block display_Job_page %}
+<div class="container">
+    <br>
+    <h1 class="title">
+        {{job_title}}
+        <span style="font-size:xx-large;background-color: lightgray; padding-left: 0.25em; padding-right: 0.5em;">
+            <i class="fa-solid fa-star"></i> {{match_score}}%
+        </span>
+    </h1>
+    <h4 class="title" style="color: crimson;">
+        {{company}}
+    </h4>
+    <p>
+        <span style="color: gray;">{{location}}</span>.
+        <span style="color: gray;">{{posted_time_ago}}</span>.
+        <br><span style="color: gray;">{{nb_candidats}} applicants</span>
+    </p>
+
+    <h4 class="title">
+        Required skills:
+    </h4>
+    <br>
+
+    <div class="text-center">
+        {% for skill in skills %}
+        {% if skill in missing_skills %}
+        <span style="font-size:large;background-color: rgb(239,59,44);color: white; 
+                padding-left: 0.25em;
+                margin-left: 1em;">
+            {{skill}}
+        </span>
+        {% else %}
+        <span style="font-size:large;background-color: rgb(33,113,181);color: white; 
+                padding-left: 0.25em;
+                margin-left: 1em;">
+            {{skill}}
+        </span>
+        {% endif %}
+        {% endfor %}
+    </div>
+    <br>
+
+    <p>
+        {% for k in range(nb_words) %}
+        {% if types[k] =="SKILL-missing" %}
+        <!-- <span style="font-size:medium;background-image: linear-gradient(90deg, #FF0000,  #FF7878);">
+            {{words[k]}}
+        </span> -->
+        <span style="font-size:medium;background-color: rgb(239,59,44);color: white;">
+            {{words[k]}}
+        </span>
+        {% endif %}
+        {% if types[k] =="SKILL" %}
+        <span style="font-size:medium;background-color:rgb(33,113,181) ;color: white;">
+            {{words[k]}}
+        </span>
+        <!-- <span style="font-size:medium;background-image: linear-gradient(90deg, #9BE15D, #00E3AE);">
+            {{words[k]}}
+        </span> -->
+        {% endif %}
+        {% if types[k] =="other" %}
+        <span>
+            {{words[k]}}
+        </span>
+        {% endif %}
+        {% endfor %}
+    </p>
+
+    <br>
+    <h4><a class="nav-link" href="{{job_url}}" target="_blank">
+            <i class="fa-brands fa-linkedin"></i>
+            Job link
+        </a>
+    </h4>
+
+    <br><br>
+
+</div>
+{% endblock %}

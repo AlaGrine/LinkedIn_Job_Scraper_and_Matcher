@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <title>Job Scraper & Matcher</title>
+    <link rel=icon
+        href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/svgs/solid/magnifying-glass-chart.svg>
+
+    <!-- <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/"> -->
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- font-awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <!-- Custom styles for this template -->
+    <link href="../static/dashboard.css" rel="stylesheet">
+
+    <!-- Bootstrap CDN -->
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous">
+        </script> -->
+
+
+
+</head>
+
+<body class="d-flex flex-column h-100">
+    <!-- Navbar -->
+    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">
+            <i class="fa-solid fa-magnifying-glass-chart"></i>
+            Job Scraper & Matcher
+        </a>
+
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+    </header>
+
+    <!-- sidebar -->
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            {% if request.path == url_for('scraping_flask') %}
+                            <!-- set class to active -->
+                            <a href="{{ url_for('scraping_flask') }}" class="nav-link active">
+                                <span data-feather="search"></span>
+                                <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
+                                LinkedIn Jobs Scraper
+                            </a>
+                            {% else %}
+                            <a href="{{ url_for('scraping_flask') }}" class="nav-link">
+                                <span data-feather="search"></span>
+                                LinkedIn Jobs Scraper
+                            </a>
+                            {% endif %}
+                        </li>
+
+                        <li class="nav-item">
+                            {% if request.path == url_for('dashboard') %}
+                            <!-- set class to active -->
+                            <a href="{{ url_for('dashboard') }}" class="nav-link active">
+                                <span data-feather="bar-chart-2"></span>
+                                Dashboard
+                            </a>
+                            {% else %}
+                            <a href="{{ url_for('dashboard') }}" class="nav-link">
+                                <span data-feather="bar-chart-2"></span>
+                                Dashboard
+                            </a>
+                            {% endif %}
+
+                        </li>
+                        <li class="nav-item">
+                            {% if request.path == url_for('resume_analyzer_flask') %}
+                            <!-- set class to active -->
+                            <a href="{{ url_for('resume_analyzer_flask') }}" class="nav-link active">
+                                <span data-feather="check-square"></span>
+                                Resume analyzer
+                            </a>
+                            {% else %}
+                            <a href="{{ url_for('resume_analyzer_flask') }}" class="nav-link">
+                                <span data-feather="check-square"></span>
+                                Resume analyzer
+                            </a>
+                            {% endif %}
+                        </li>
+                        <li class="nav-item">
+                            {% if request.path == url_for('resume_vs_job_flask') %}
+                            <!-- set class to active -->
+                            <a href="{{ url_for('resume_vs_job_flask') }}" class="nav-link active">
+                                <span data-feather="check-circle"></span>
+                                Resume vs. Job
+                            </a>
+                            {% else %}
+                            <a href="{{ url_for('resume_vs_job_flask') }}" class="nav-link">
+                                <span data-feather="check-circle"></span>
+                                Resume vs. Job
+                            </a>
+                            {% endif %}
+                        </li>
+
+                        <h6
+                            class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                            <span>Contact</span>
+                        </h6>
+                        <ul class="nav flex-column mb-2">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://github.com/AlaGrine?tab=repositories" target="_blank">
+                                    <!-- <span data-feather="github"></span> -->
+                                    <i class="fab fa-github"></i>
+                                    Github
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://www.linkedin.com/in/ala-eddine-grine" target="_blank">
+                                    <!-- <span data-feather="linkedin"></span> -->
+                                    <i class="fa-brands fa-linkedin"></i>
+                                    Linkedin
+                                </a>
+                            </li>
+
+                        </ul>
+                </div>
+
+                <!-- Footer -->
+
+                <div class="bottom_content">
+                    <div class="footer">
+                        <p>
+                            &copy;
+                            <script>document.write(new Date().getFullYear());</script> - Job Scraper & Matcher
+                        </p>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <!-- <div class="container h-100 mt-3 p-5"> -->
+            <!-- <div class="row justify-content-sm-center h-100 "> -->
+            {% block scraping_page %}
+            {% endblock %}
+
+            {% block resume_analyzing_page %}
+            {% endblock %}
+
+            {% block resume_vs_Job_page %}
+            {% endblock %}
+
+            {% block display_Job_page %}
+            {% endblock %}
+
+            {% block dashboard %}
+            {% endblock %}
+            <!-- </div> -->
+            <!-- </div> -->
+
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../static/assets/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
+        integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
+        crossorigin="anonymous"></script>
+
+    <script src="../static/dashboard.js"></script>
+
+
+    <script type="text/javascript">
+        // plots the figure with id
+        // id must match the div id above in the html
+        var figures = {{ graphJSON | safe}};
+        var ids = {{ ids | safe}};
+        for (var i in figures) {
+            Plotly.plot(ids[i],
+                figures[i].data,
+                figures[i].layout || {});
+        }
+    </script>
+
+
+</body>
+
+</html>

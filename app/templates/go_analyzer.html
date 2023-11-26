@@ -1,0 +1,146 @@
+{% extends "resume_analyzing.html" %}
+{% block title %}Results{% endblock %}
+{% block message %}
+<hr />
+
+{% if num_skills>0 %}
+<h1 class="text-center">Your skills
+    <!-- <span style="font-size: small;background-color: gold;
+    margin-bottom: 1.5em;top: -1em;
+    padding-left: 0.5em;padding-right: 0.5em;
+    position: relative; display:inline-block">
+        {{num_skills}}
+    </span> -->
+</h1>
+<div class="text-center">
+    {% for skill in your_skills %}
+    <span style="font-size:large;background-color: lightgray; 
+            padding-left: 0.25em;
+            margin-left: 1em;">
+        {{skill}}
+    </span>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% endblock %}
+
+{% block content %}
+
+{% if num_skills>-1 %}
+<br>
+{% else %}
+<h3 style="background-color: red;color: white;">{{message}}</h3>
+
+{% endif %}
+
+
+
+{% endblock %}
+
+
+{% block Match_Score %}
+{% if num_skills>-1 %}
+<br>
+<br>
+<div id="middle-info" class="mt-3">
+    <h2 id="tag-line">Top matching jobs</h2>
+</div>
+<br>
+
+
+<!-- Set data-bs-interval="false" to stop auto sliding-->
+<div id="Carousel_Jobs" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval="false">
+    <div class="carousel-inner overflow: visible;">
+
+        <!--  Use Bootstrap Carousel -->
+        <!-- Show 3 cards. Use buttons next and previous-->
+        {% for k in range((nb_top_matching/3|round)|int) %}
+        {% if k==0 %}
+        <div class="carousel-item active">
+            {% else %}
+            <div class="carousel-item ">
+                {% endif %}
+                <div class="container-fluid">
+                    <div class="row">
+                        <!-- Show 3 cards -->
+                        {% for n in range(3*k,3*(k+1)) %}
+                        <div class="col-sm-4 d-flex">
+                            <div class="card card-body flex-fill border rounded shadow-sm ">
+                                <div class="my-2">
+                                    <div class="row mt-4">
+                                        <!-- Show Job title -->
+                                        <div class="col-sm-9">
+                                            <h5 class="title">
+                                                {{list_job_title[n]}}
+                                            </h5>
+                                        </div>
+                                        <!-- Show match_score -->
+                                        <div class="text-center  col-sm-3">
+                                            <div class="d-flex flex-row">
+                                                <div class="p-1"><i class="fa-solid fa-star"></i></div>
+                                                <div class="p-1">
+                                                    {% if list_match_score[n]>60 %}
+                                                    <p style="font-size: small;background-color: gold;">
+                                                        {{list_match_score[n]}}%
+                                                    </p>
+                                                    {% else %}
+                                                    <p style="font-size: small;background-color: lightgray;">
+                                                        {{list_match_score[n]}}%
+                                                    </p>
+                                                    {% endif %}
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Show Company name -->
+                                    <h6 class="title" style="color: crimson;">
+                                        {{list_company[n]}}
+                                    </h6>
+                                    <p class="mt-4">
+                                        <span style="color: gray;">{{list_location[n]}}</span>.
+                                        <span style="color: gray;">{{list_posted_time_ago[n]}}</span>.
+                                        <br><span style="color: gray;">{{list_nb_candidats[n]}} applicants</span>
+                                    </p>
+
+
+                                    <!-- Show Job descreption -->
+                                    <p class="mt-4">
+                                        {{list_Job_txt[n][:380]}} ...
+                                    </p>
+
+                                </div>
+                                <!-- Add read Button -->
+                                <div class="d-flex flex-row mt-auto">
+                                    <form action="/display_Job" method="get">
+                                        <input type="hidden" name="job_id" value={{list_Job_ID[n]}} />
+                                        <button type="submit" class="btn btn-link">Read</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+
+        </div>
+        <button style="margin-left: 45%;margin-top: 10px;" type="button" data-bs-target="#Carousel_Jobs"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button type="button" data-bs-target="#Carousel_Jobs" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+        <br><br>
+
+
+
+    </div>
+    {% endif %}
+    {% endblock %}
