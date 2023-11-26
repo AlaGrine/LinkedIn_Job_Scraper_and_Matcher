@@ -68,12 +68,15 @@ def find_Job_Ids(soup):
     return Job_Ids_on_the_page
 
 
+description
+
+
 def scraping_Job_Ids(
     keywords,
     location,
     email_address,
     password,
-    chromedriver_path="../chromedriver-win64/chromedriver.exe",
+    chromedriver_path="../chromedriver/chromedriver.exe",
     sleep_time=120,
 ):
     """Scrape linkedin Job Ids using selenium and BeautifulSoup
@@ -398,7 +401,7 @@ def Preprocess_data(jobs_DF):
 def scraping_main(
     keywords,
     location,
-    chrome_driver_path="../chromedriver-win64/chromedriver.exe",
+    chrome_driver_path="../chromedriver/chromedriver.exe",
     sleep_time=120,
 ):
     """

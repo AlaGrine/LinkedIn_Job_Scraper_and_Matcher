@@ -25,7 +25,7 @@ app = Flask(__name__)
 
 # Global variables
 NB_TOP_MATCHING_JOBS_TO_DISPLAY = 51  # Number of top matching jobs to display
-CHROME_DRIVER_PATH = "../chromedriver-win64/chromedriver.exe"
+CHROME_DRIVER_PATH = "../chromedriver/chromedriver.exe"
 SLEEP_TIME = 120  # provide extra time for the webpage to load.
 LINKEDIN_job_URL = "https://www.linkedin.com/jobs/search/?currentJobId="
 
