@@ -65,11 +65,11 @@ You can replace "Data Scientist" and "Montreal, Quebec, Canada" with the job tit
 
 **120** is a timer set in seconds which allows for supplementary loading time for the webpage. The timer can be adjusted depending on your Internet speed.
 
-2. Run the following command in the FLASK_app's directory to run the WEB application.
+3. Run the following command in the FLASK_app's directory to run the WEB application.
 
    `python run.py`
 
-3. Go to http://127.0.0.1:3001/
+4. Go to http://127.0.0.1:3001/
 
 ## Flask application <a name="Flask_app"></a>
 
