@@ -15,24 +15,25 @@ But with hundreds of jobs posted every day, it can be hard to find the ones that
 
 The main purpose of this project is to help you find the best matching jobs automatically.
 
-We will scrape Linkedin jobs, analyse them using Spacy, search for keywords and skills required, compare them to your own skills and provide a list of the most relevant job matches.
+In this project we:
 
-The project is divided into the following sections:
-
-1. Linkedin job scraping using `Selenium`, `Requests` and `BeautifulSoup`.
-2. Text analysis and entity recognition with `Spacy`.
-3. Build a Flask application to display visualisations of the data (e.g. word cloud of in-demand skills) and highlight the skills and keywords of each job.
+1. Built a Linkedin job scraper using `Selenium`, `Requests` and `BeautifulSoup`.
+2. Built a text analysis of your resume and LinkedIn jobs using `Spacy`.
+3. Developed a `Flask` app to display data visualisations, including a word cloud of in-demand skills. The app highlights job-specific skills and keywords, compares them to your skills and generates a list of the most relevant job matches.
 
 ## Installation <a name="installation"></a>
 
 This project requires Python 3 and the following Python libraries installed:
 
 1. WEB scraping libraries: `Selenium`, `Requests`, `BeautifulSoup`
-2. NLP libraries: `Spacy`
-3. Web app and visualization: `Flask`, `Plotly`, `Wordcloud`
+2. NLP libraries: `Spacy`, `NLTK`
+3. Web app and visualization: `Flask`, `Plotly`, `Matplotlib`, `Wordcloud`
 4. Other libraries: `pandas`, `numpy`, `json`
 
-`The full list of requirements can be found in requirements.txt file.`
+5. Install the trained English pipeline from Spacy.io as follows:
+   `python -m spacy download en_core_web_lg `
+
+The full list of requirements can be found in the `requirements.txt` file.
 
 ## File Descriptions <a name="file_descriptions"></a>
 
@@ -45,16 +46,18 @@ This project requires Python 3 and the following Python libraries installed:
   - `static` folder: Contains our customized `CSS` file and `Bootstrap` (compiled and minified `CSS` bundles and `JS` plugins).
 - **chromedriver** folder: contains the chromedriver executable used by `Selenium` to control Chrome.
 - **data** folder: contains the following files:
-  - `user_credentials.txt`: Contains your login credentials (email address and password).
+  - `user_credentials.txt`: Contains your LinkedIn credentials (email address and password).
   - `Skills_in_Demand.txt`: List of skills in demand (you can update this list).
-  - `Skill_patterns.jsonl`: Contains the skill patterns in json format and will be used to create an entity ruler in the `Spacy`` model.
+  - `Skill_patterns.jsonl`: Contains the skill patterns in json format and will be used to create an entity ruler in the `Spacy` model.
   - `Job_Ids.csv` and `linkedin_jobs_scraped.csv`: Scraped LinkedIn job IDs and job details (description, location, number of candidates, etc.).
 - **notebooks** folder: contains the project notebooks.
 - **resume**folder: Enter your CV here to analyse it with Spacy and get a list of your skills.
 
 ## Instructions <a name="instructions"></a>
 
-1. Run the following command in the FLASK_app's directory to scrape LinkedIn jobs.
+1. Save your LinkedIn credentials (email address and password) in `user_credentials.txt`.
+
+2. Run the following command in the FLASK_app's directory to scrape LinkedIn jobs.
 
    `python scraping_linkedin.py "data scientist" "Montreal, Quebec, Canada" 120`
 
