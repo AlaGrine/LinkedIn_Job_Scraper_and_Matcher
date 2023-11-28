@@ -1,5 +1,11 @@
 # LinkedIn Job Scraper and Matcher
 
+### WEB scraping with Selinium and BeautifulSoup, NLP with Spacy and WEB app with Flask.
+
+<div align="center">
+  <img src="https://github.com/AlaGrine/LinkedIn_Job_Scraper_and_Matcher/blob/main/screenshots/Leonardo_Diffusion_XL_LinkedIn_Job_scraping_2.jpg" >
+</div>
+
 ### Table of Contents
 
 1. [Project Motivation](#motivation)
@@ -7,6 +13,7 @@
 3. [File Descriptions](#file_descriptions)
 4. [Instructions](#instructions)
 5. [Flask application](#Flask_app)
+6. [Acknowledgements](#Acknowledgements)
 
 ## Project Motivation <a name="motivation"></a>
 
@@ -49,9 +56,9 @@ The full list of requirements can be found in the `requirements.txt` file.
   - `user_credentials.txt`: Contains your LinkedIn credentials (email address and password).
   - `Skills_in_Demand.txt`: List of skills in demand (you can update this list).
   - `Skill_patterns.jsonl`: Contains the skill patterns in json format and will be used to create an entity ruler in the `Spacy` model.
-  - `Job_Ids.csv` and `linkedin_jobs_scraped.csv`: Scraped LinkedIn job IDs and job details (description, location, number of candidates, etc.).
+  - `Job_Ids.csv` and `linkedin_jobs_scraped.json`: Scraped LinkedIn job IDs and job details (description, seniority level, number of candidates, etc.).
 - **notebooks** folder: contains the project notebooks.
-- **resume**folder: Enter your CV here to analyse it with Spacy and get a list of your skills.
+- **resume** folder: Enter your resume (pdf format) here to analyse it with Spacy and get a list of your skills.
 
 ## Instructions <a name="instructions"></a>
 
@@ -61,9 +68,9 @@ The full list of requirements can be found in the `requirements.txt` file.
 
    `python scraping_linkedin.py "data scientist" "Montreal, Quebec, Canada" 120`
 
-You can replace "Data Scientist" and "Montreal, Quebec, Canada" with the job title and the location, respectively.
+   You can replace "Data Scientist" and "Montreal, Quebec, Canada" with the job title and the location, respectively.
 
-**120** is a timer set in seconds which allows for supplementary loading time for the webpage. The timer can be adjusted depending on your Internet speed.
+   **120** is a timer set in seconds which allows for supplementary loading time for the webpage. The timer can be adjusted depending on your Internet speed.
 
 3. Run the following command in the FLASK_app's directory to run the WEB application.
 
@@ -73,14 +80,22 @@ You can replace "Data Scientist" and "Montreal, Quebec, Canada" with the job tit
 
 ## Flask application <a name="Flask_app"></a>
 
-1. THe `Dashboard` page displays the distribution of levels and the number of days since the job posting. Additionally, it showcases a word cloud containing in-demand skills.
+1. THe `Dashboard` page displays the distribution of seniority level and the number of days since the job posting. Additionally, it showcases a word cloud containing in-demand skills. This will help you define what you should be looking for to further broaden your skills.
 
    ![image Dashboard](https://github.com/AlaGrine/LinkedIn_Job_Scraper_and_Matcher/blob/main/screenshots/dashboard.png)
 
-2. The `Resume_Analyzer` page uploads your resume, displays your skills and assesses them against the most in-demand skills.
+2. The `Resume_Analyzer` page uploads your resume (pdf format), displays your skills and assesses them against the most in-demand skills.
 
    ![image Skills](https://github.com/AlaGrine/LinkedIn_Job_Scraper_and_Matcher/blob/main/screenshots/skills.png)
 
-3. The LinkedIn job role is presented on the `display_Job` page with an emphasis on the match score and highlighting essential skills required for the position that are not listed in your resume.
+3. The best matching jobs are showcased within a carousel that emphasises the matching scores.
+
+   ![job](https://github.com/AlaGrine/LinkedIn_Job_Scraper_and_Matcher/blob/main/screenshots/best_matching_jobs.png)
+
+4. The LinkedIn job role is presented on the `display_Job` page with an emphasis on the match score and highlighting essential skills required for the position that are not listed in your resume.
 
    ![job](https://github.com/AlaGrine/LinkedIn_Job_Scraper_and_Matcher/blob/main/screenshots/capture1.png)
+
+## Acknowledgements <a name="Acknowledgements"></a>
+
+Must give credit to [kingabzpro](https://github.com/kingabzpro/jobzilla_ai/blob/main/jz_skill_patterns.jsonl) for the Skill patterns json file, to which I have added a few other skills, such as Power BI and Streamlit.
